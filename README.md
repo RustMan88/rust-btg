@@ -1,8 +1,8 @@
-# Rust-SV
+# Rust-BTG
 
-A library to build Bitcoin SV applications in Rust.
+A library to build Bitcoin BTG applications in Rust.
 
-[Documentation](https://docs.rs/sv/)
+[Documentation](https://docs.rs/btg/)
 
 Features
 
@@ -17,7 +17,7 @@ Features
 
 # Installation
 
-Add ```sv = "0.1"``` to Cargo.toml
+Add ```btg = "0.1"``` to Cargo.toml
 
 # Requirements
 
@@ -31,7 +31,7 @@ This library should not be used for consensus code because its validation checks
 
 # Comparison with other Rust libraries
 
-*rust-bitcoin* - rust-sv has no ties to rust-bitcoin. This library can do everything rust-bitcoin can do and more for Bitcoin SV.
+*rust-bitcoin* - rust-btg has no ties to rust-bitcoin. This library can do everything rust-bitcoin can do and more for Bitcoin SV.
 
 *parity-bitcoin* - The parity Bitcoin client is a full node in Rust. Its code is more full-featured and also more complex.
 
@@ -39,4 +39,4 @@ This library should not be used for consensus code because its validation checks
 
 # License
 
-rust-sv is licensed under the MIT license.
+rust-btg is licensed under the MIT license.

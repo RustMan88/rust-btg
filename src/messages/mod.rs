@@ -5,8 +5,8 @@
 //! Decode a network message
 //!
 //! ```rust
-//! use sv::messages::Message;
-//! use sv::network::Network;
+//! use btb::messages::Message;
+//! use btg::network::Network;
 //! use std::io::Cursor;
 //!
 //! let bytes = [
@@ -25,9 +25,9 @@
 //! Construct a transaction:
 //!
 //! ```rust
-//! use sv::messages::{OutPoint, Tx, TxIn, TxOut};
-//! use sv::transaction::p2pkh::{create_pk_script, create_sig_script};
-//! use sv::util::{hash160, Amount, Hash256, Units};
+//! use btg::messages::{OutPoint, Tx, TxIn, TxOut};
+//! use btg::transaction::p2pkh::{create_pk_script, create_sig_script};
+//! use btg::util::{hash160, Amount, Hash256, Units};
 //!
 //! // Use real values here
 //! let signature = [0; 72];
@@ -44,7 +44,7 @@
 //! }];
 //!
 //! let outputs = vec![TxOut {
-//!     amount: Amount::from(1., Units::Bsv),
+//!     amount: Amount::from(1., Units::Btg),
 //!     pk_script: create_pk_script(&hash160(&public_key)),
 //! }];
 //!

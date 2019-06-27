@@ -5,8 +5,8 @@
 //! Evaluate a script that divides two numbers:
 //!
 //! ```rust
-//! use sv::script::op_codes::*;
-//! use sv::script::{Script, TransactionlessChecker};
+//! use btg::script::op_codes::*;
+//! use btg::script::{Script, TransactionlessChecker};
 //!
 //! let mut script = Script::new();
 //! script.append(OP_10);

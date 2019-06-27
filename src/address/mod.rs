@@ -5,8 +5,8 @@
 //! Extract the public key hash and address type from a base-58 address:
 //!
 //! ```rust
-//! use sv::address::addr_decode;
-//! use sv::network::Network;
+//! use btg::address::addr_decode;
+//! use btg::network::Network;
 //!
 //! let addr = "15wpV72HRpAFPMmosR3jvGq7axU7t6ghX5";
 //! let (pubkeyhash, addr_type) = addr_decode(&addr, Network::Mainnet).unwrap();
@@ -15,14 +15,16 @@
 //! Encode a public key hash into a base-58 address:
 //!
 //! ```rust
-//! use sv::address::{addr_encode, AddressType};
-//! use sv::network::Network;
-//! use sv::util::hash160;
+//! use btg::address::{addr_encode, AddressType};
+//! use btg::network::Network;
+//! use btg::util::hash160;
 //!
 //! let pubkeyhash = hash160(&[0; 33]);
 //! let addr = addr_encode(&pubkeyhash, AddressType::P2PKH, Network::Mainnet);
 //! ```
 //!
+//!
+pub mod address;
 use crate::network::Network;
 use crate::util::{sha256d, Error, Hash160, Result};
 use rust_base58::base58::{FromBase58, ToBase58};
@@ -104,7 +106,7 @@ mod tests {
         let pubkey_hex = "04005937fd439b3c19014d5f328df8c7ed514eaaf41c1980b8aeab461dffb23fbf3317e42395db24a52ce9fc947d9c22f54dc3217c8b11dfc7a09c59e0dca591d3";
         let pubkeyhash = hash160(&hex::decode(pubkey_hex).unwrap());
         let addr = addr_encode(&pubkeyhash, AddressType::P2PKH, Network::Mainnet);
-        assert!(addr == "1NM2HFXin4cEQRBLjkNZAS98qLX9JKzjKn");
+        assert!(&addr == "1NM2HFXin4cEQRBLjkNZAS98qLX9JKzjKn");
     }
 
     #[test]
@@ -114,7 +116,7 @@ mod tests {
         let hash160 = result.0;
         let addr_type = result.1;
         assert!(addr_type == AddressType::P2PKH);
-        assert!(hex::encode(hash160.0) == "ea2407829a5055466b27784cde8cf463167946bf");
+        assert!(&hex::encode(hash160.0) == "ea2407829a5055466b27784cde8cf463167946bf");
     }
 
     #[test]

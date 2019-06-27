@@ -133,7 +133,7 @@ impl Network {
     /// Returns the version byte flag for P2PKH-type addresses
     pub fn addr_pubkeyhash_flag(&self) -> u8 {
         match self {
-            Network::Mainnet => 0x00,
+            Network::Mainnet => 38,
             Network::Testnet => 0x6f,
         }
     }
@@ -141,7 +141,7 @@ impl Network {
     /// Returns the version byte flag for P2SH-type addresses
     pub fn addr_script_flag(&self) -> u8 {
         match self {
-            Network::Mainnet => 0x05,
+            Network::Mainnet => 23,
             Network::Testnet => 0xc4,
         }
     }

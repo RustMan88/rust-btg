@@ -9,13 +9,15 @@ mod bloom_filter;
 #[allow(dead_code)]
 mod future;
 #[allow(dead_code)]
-mod hash160;
-mod hash256;
+pub mod hash160;
+pub mod hash256;
 #[allow(dead_code)]
 mod latch;
 mod result;
 pub mod rx;
 mod serdes;
+pub mod key;
+pub mod base58;
 pub(crate) mod var_int;
 
 pub use self::amount::{Amount, Units};

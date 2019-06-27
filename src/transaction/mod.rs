@@ -5,11 +5,11 @@
 //! Sign a transaction:
 //!
 //! ```rust
-//! use sv::messages::{Tx, TxIn};
-//! use sv::transaction::generate_signature;
-//! use sv::transaction::p2pkh::{create_pk_script, create_sig_script};
-//! use sv::transaction::sighash::{sighash, SigHashCache, SIGHASH_FORKID, SIGHASH_NONE};
-//! use sv::util::{hash160, Amount};
+//! use btg::messages::{Tx, TxIn};
+//! use btg::transaction::generate_signature;
+//! use btg::transaction::p2pkh::{create_pk_script, create_sig_script};
+//! use btg::transaction::sighash::{sighash, SigHashCache, SIGHASH_FORKID, SIGHASH_NONE};
+//! use btg::util::{hash160, Amount};
 //!
 //! // Use real values here
 //! let mut tx = Tx {
@@ -34,6 +34,7 @@ use secp256k1::{Message, Secp256k1, SecretKey};
 
 pub mod p2pkh;
 pub mod sighash;
+pub mod raw;
 
 /// Generates a signature for a transaction sighash
 pub fn generate_signature(
@@ -45,6 +46,21 @@ pub fn generate_signature(
     let message = Message::from_slice(&sighash.0)?;
     let secret_key = SecretKey::from_slice(private_key)?;
     let mut signature = secp.sign(&message, &secret_key);
+    signature.normalize_s();
+    let mut sig = signature.serialize_der();
+    sig.push(sighash_type);
+    Ok(sig)
+}
+
+/// Generates a signature for a transaction sighash
+pub fn generate_signature2(
+    secret_key: &SecretKey,
+    sighash: &Hash256,
+    sighash_type: u8,
+) -> Result<Vec<u8>> {
+    let secp = Secp256k1::signing_only();
+    let message = Message::from_slice(&sighash.0)?;
+    let mut signature = secp.sign(&message, secret_key);
     signature.normalize_s();
     let mut sig = signature.serialize_der();
     sig.push(sighash_type);

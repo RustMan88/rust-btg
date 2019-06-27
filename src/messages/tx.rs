@@ -126,6 +126,17 @@ impl Tx {
             && self.inputs[0].prev_output.hash == COINBASE_OUTPOINT_HASH
             && self.inputs[0].prev_output.index == COINBASE_OUTPOINT_INDEX;
     }
+
+    pub fn serialize_hex(&self) -> String {
+        let mut bytes = vec![];
+        self.write(&mut bytes).unwrap();
+
+        let mut res = String::with_capacity(bytes.len() * 2);
+        for byte in bytes.iter() {
+            res.push_str(&format!("{:02x}", byte));
+        }
+        res
+    }
 }
 
 impl Serializable<Tx> for Tx {

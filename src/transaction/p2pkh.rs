@@ -16,10 +16,16 @@ pub fn create_pk_script(address: &Hash160) -> Script {
 }
 
 /// Creates a sigscript to sign a p2pkh transaction
-pub fn create_sig_script(sig: &[u8], public_key: &[u8; 33]) -> Script {
+pub fn create_sig_script(sig: &[u8], public_key: &[u8]) -> Script {
     let mut sig_script = Script::new();
     sig_script.append_data(sig);
     sig_script.append_data(public_key);
+    sig_script
+}
+/// Creates a sigscript to sign a p2pkh transaction
+pub fn create_sig_script2(sig: &[u8]) -> Script {
+    let mut sig_script = Script::new();
+    sig_script.append_data(sig);
     sig_script
 }
 

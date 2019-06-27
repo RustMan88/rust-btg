@@ -14,11 +14,11 @@ pub const SIGHASH_NONE: u8 = 0x02;
 pub const SIGHASH_SINGLE: u8 = 0x03;
 /// Sign only the input so others may inputs to the transaction
 pub const SIGHASH_ANYONECANPAY: u8 = 0x80;
-/// Bitcoin Cash / SV sighash flag for use on outputs after the fork
+/// Bitcoin Cash / SV / Gold sighash flag for use on outputs after the fork
 pub const SIGHASH_FORKID: u8 = 0x40;
 
-/// The 24-bit fork ID for Bitcoin Cash / SV
-const FORK_ID: u32 = 0;
+/// The 24-bit fork ID for Bitcoin Cash / SV /Gold
+const FORK_ID: u32 = 79;
 
 /// Generates a transaction digest for signing
 ///
@@ -84,10 +84,17 @@ fn bip143_sighash(
         return Err(Error::BadArgument("input out of tx_in range".to_string()));
     }
 
-    let mut s = Vec::with_capacity(tx.size());
-    let base_type = sighash_type & 31;
+    println!("****** bip143_sighash");
+
+    let mut nForkHashTypeu :u32 = sighash_type as u32;
+    if sighash_type & SIGHASH_FORKID != 0 {
+        nForkHashTypeu |= FORK_ID << 8;
+    }
+
+    let base_type = sighash_type & 0x1f;
     let anyone_can_pay = sighash_type & SIGHASH_ANYONECANPAY != 0;
 
+    let mut s = Vec::with_capacity(tx.size());
     // 1. Serialize version
     s.write_u32::<LittleEndian>(tx.version)?;
 
@@ -158,7 +165,7 @@ fn bip143_sighash(
     s.write_u32::<LittleEndian>(tx.lock_time)?;
 
     // 10. Serialize hash type
-    s.write_u32::<LittleEndian>((FORK_ID << 8) | sighash_type as u32)?;
+    s.write_u32::<LittleEndian>(nForkHashTypeu)?;
 
     Ok(sha256d(&s))
 }

@@ -5,7 +5,7 @@
 //! Iterate through seed nodes:
 //!
 //! ```no_run, rust
-//! use sv::network::Network;
+//! use btg::network::Network;
 //!
 //! for (ip, port) in Network::Mainnet.seed_iter() {
 //!     println!("Seed node {:?}:{}", ip, port);

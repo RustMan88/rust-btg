@@ -23,3 +23,46 @@ pub mod script;
 pub mod transaction;
 pub mod util;
 pub mod wallet;
+
+
+#[macro_use]
+extern crate serde_derive;
+extern crate serde;
+extern crate serde_json;
+
+#[derive(Debug)]
+pub enum Error {
+    GreateRawTxError,
+    NotFoundKeyError,
+    SignRawTxError,
+    NotSupportedAddressFormError,
+    TxidParseError,
+    AddressParseError,
+    PrivKeyParseError,
+    NotEnoughAmount,
+    PrepareRawTxError,
+    NotFoundAesKeyError,
+    AesDecryptError,
+    SerdeJsonError,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TxInputReq {
+    pub txid: String,
+    pub index: u32,
+    pub address: String,
+    pub credit: u64,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TxOutputReq {
+    pub address: String,
+    pub value: u64,
+}
+
+pub use crate::util::key::{Account,PublicKey,PrivateKey};
+pub use crate::address::address::Address;
+pub use crate::transaction::raw;
+pub use crate::network::Network;
+
+

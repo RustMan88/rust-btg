@@ -5,19 +5,19 @@
 //! Send and receive a message to a node syncronously:
 //!
 //! ```no_run, rust
-//! use sv::messages::{Message, Ping, Version, NODE_BITCOIN_CASH, PROTOCOL_VERSION};
-//! use sv::network::Network;
-//! use sv::peer::{Peer, SVPeerFilter};
-//! use sv::util::rx::Observable;
-//! use sv::util::secs_since;
+//! use btg::messages::{Message, Ping, Version, NODE_BITCOIN_CASH, PROTOCOL_VERSION};
+//! use btg::network::Network;
+//! use btg::peer::{Peer, SVPeerFilter};
+//! use btg::util::rx::Observable;
+//! use btg::util::secs_since;
 //! use std::time::UNIX_EPOCH;
 //!
 //! let (ip, port) = Network::Mainnet.seed_iter().next().unwrap();
 //! let version = Version {
 //!     version: PROTOCOL_VERSION,
-//!     services: NODE_BITCOIN_CASH,
+//!     services: NODE_BITCOIN_GOLD,
 //!     timestamp: secs_since(UNIX_EPOCH) as i64,
-//!     user_agent: "rust-sv".to_string(),
+//!     user_agent: "rust-btg".to_string(),
 //!     ..Default::default()
 //! };
 //!
@@ -33,11 +33,11 @@
 //! Handle node events asynronously:
 //!
 //! ```no_run, rust
-//! use sv::messages::{Version, NODE_BITCOIN_CASH, PROTOCOL_VERSION};
-//! use sv::network::Network;
-//! use sv::peer::{Peer, PeerConnected, PeerDisconnected, PeerMessage, SVPeerFilter};
-//! use sv::util::rx::{Observable, Observer};
-//! use sv::util::secs_since;
+//! use btg::messages::{Version, NODE_BITCOIN_CASH, PROTOCOL_VERSION};
+//! use btg::network::Network;
+//! use btg::peer::{Peer, PeerConnected, PeerDisconnected, PeerMessage, SVPeerFilter};
+//! use btg::util::rx::{Observable, Observer};
+//! use btg::util::secs_since;
 //! use std::sync::Arc;
 //! use std::time::UNIX_EPOCH;
 //!
@@ -46,7 +46,7 @@
 //!     version: PROTOCOL_VERSION,
 //!     services: NODE_BITCOIN_CASH,
 //!     timestamp: secs_since(UNIX_EPOCH) as i64,
-//!     user_agent: "rust-sv".to_string(),
+//!     user_agent: "rust-btg".to_string(),
 //!     ..Default::default()
 //! };
 //!
