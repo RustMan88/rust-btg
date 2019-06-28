@@ -48,13 +48,6 @@ impl From<secp256k1::Error> for Error {
     }
 }
 
-#[derive(Debug)]
-pub struct Account {
-    pub public_key: PublicKey,
-    pub private_key: PrivateKey,
-    pub address: String,
-}
-
 /// A Bitcoin ECDSA public key
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct PublicKey {
@@ -362,7 +355,7 @@ mod tests {
     use std::str::FromStr;
     use crate::network::Network::Testnet;
     use crate::network::Network::Mainnet;
-    use util::address::Address;
+    use crate::address::address::Address;
 
     #[test]
     fn test_key_derivation() {

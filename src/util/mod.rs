@@ -17,6 +17,7 @@ mod result;
 pub mod rx;
 mod serdes;
 pub mod key;
+pub mod account;
 pub mod base58;
 pub(crate) mod var_int;
 

@@ -6,6 +6,7 @@ use crate::transaction::generate_signature2;
 use crate::transaction::p2pkh::{self,create_pk_script, create_sig_script};
 use crate::transaction::sighash::{sighash, SigHashCache, SIGHASH_FORKID, SIGHASH_ALL,SIGHASH_NONE};
 use crate::util::{hash160, Hash256,Amount,key};
+use crate::util::account::Account;
 use crate::{TxInputReq,TxOutputReq};
 use crate::Error;
 
@@ -33,7 +34,7 @@ fn get_outpoint(input : &TxInputReq) -> Result<OutPoint,Error>{
     })
 }
 
-pub fn create_sign_rawtx(vins:&Vec<TxInputReq>,vouts:&Vec<TxOutputReq>,accounts:&Vec<key::Account>)-> Result<String, Error>{
+pub fn create_sign_rawtx(vins:&Vec<TxInputReq>,vouts:&Vec<TxOutputReq>,accounts:&Vec<Account>)-> Result<String, Error>{
     //检查入数量是否大于等于出数量
     let total_out = vouts.iter().fold(0, |acc, output| acc + output.value);
     let total_in = vins.iter().fold(0, |acc, input| acc + input.credit);

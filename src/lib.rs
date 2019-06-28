@@ -60,7 +60,8 @@ pub struct TxOutputReq {
     pub value: u64,
 }
 
-pub use crate::util::key::{Account,PublicKey,PrivateKey};
+pub use crate::util::key::{PublicKey,PrivateKey};
+pub use crate::util::account::Account;
 pub use crate::address::address::Address;
 pub use crate::transaction::raw;
 pub use crate::network::Network;

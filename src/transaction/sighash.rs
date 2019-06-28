@@ -84,8 +84,6 @@ fn bip143_sighash(
         return Err(Error::BadArgument("input out of tx_in range".to_string()));
     }
 
-    println!("****** bip143_sighash");
-
     let mut nForkHashTypeu :u32 = sighash_type as u32;
     if sighash_type & SIGHASH_FORKID != 0 {
         nForkHashTypeu |= FORK_ID << 8;

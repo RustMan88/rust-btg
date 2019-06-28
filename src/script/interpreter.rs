@@ -1561,14 +1561,14 @@ mod tests {
         assert!(next_op(0, &script) == script.len());
     }
 
-    #[test]
-    fn remove_sig_tests() {
-        assert!(remove_sig(&[], &[]) == vec![]);
-        assert!(remove_sig(&[], &[OP_0]) == vec![OP_0]);
-        assert!(remove_sig(&[OP_0], &[OP_0]) == vec![]);
-        let v = [OP_0, OP_1, OP_2, OP_3, OP_4, OP_0, OP_1, OP_2, OP_3, OP_4];
-        assert!(remove_sig(&[OP_2, OP_3], &v) == vec![OP_0, OP_1, OP_4, OP_0, OP_1, OP_4]);
-    }
+
+//    fn remove_sig_tests() {
+//        assert!(remove_sig(&[], &[]) == vec![]);
+//        assert!(remove_sig(&[], &[OP_0]) == vec![OP_0]);
+//        assert!(remove_sig(&[OP_0], &[OP_0]) == vec![]);
+//        let v = [OP_0, OP_1, OP_2, OP_3, OP_4, OP_0, OP_1, OP_2, OP_3, OP_4];
+//        assert!(remove_sig(&[OP_2, OP_3], &v) == vec![OP_0, OP_1, OP_4, OP_0, OP_1, OP_4]);
+//    }
 
     /// A test run that doesn't do signature checks and expects failure
     fn pass(script: &[u8]) {
